@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://orbitdesk.example/schemas/support-response.json",
+  "title": "OrbitDesk Support Agent Response",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "classification",
+    "answer",
+    "sources",
+    "confidence",
+    "requires_human",
+    "reason"
+  ],
+  "properties": {
+    "classification": {
+      "type": "string",
+      "enum": [
+        "answerable",
+        "requires_clarification",
+        "requires_escalation",
+        "out_of_scope",
+        "safe_failure"
+      ]
+    },
+    "answer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_id", "passage"],
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "description": "Knowledge-base document ID or resolved-case ID"
+          },
+          "passage": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Relevant excerpt or stable passage identifier"
+          }
+        }
+      }
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "requires_human": {
+      "type": "boolean"
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Brief explanation of the route and confidence"
+    },
+    "clarification_question": {
+      "type": ["string", "null"]
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    }
+  }
+}

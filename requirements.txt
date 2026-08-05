@@ -1,0 +1,10 @@
+langgraph>=0.2.0
+langchain-core>=0.3.0
+sentence-transformers>=3.0.0
+transformers>=4.44.0
+torch>=2.3.0
+accelerate>=0.33.0
+pydantic>=2.7.0
+numpy>=1.26.0
+scikit-learn>=1.4.0
+pytest>=8.0.0

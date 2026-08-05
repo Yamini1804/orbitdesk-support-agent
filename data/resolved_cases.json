@@ -1,0 +1,139 @@
+{
+  "product": "OrbitDesk",
+  "exported_at": "2026-07-25T09:00:00Z",
+  "notes": [
+    "Current knowledge-base documents take precedence over resolved cases.",
+    "Cases with status 'superseded' are historical and must not be presented as current guidance."
+  ],
+  "cases": [
+    {
+      "case_id": "CASE-1041",
+      "status": "resolved",
+      "product_version": "4.2",
+      "title": "Recurring export stopped after workspace timezone change",
+      "symptoms": [
+        "Workspace timezone changed from Asia/Kolkata to Europe/London",
+        "Existing daily export did not run at the expected local time",
+        "Schedule displayed 'Timezone update pending'"
+      ],
+      "resolution": [
+        "Admin opened the existing recurring schedule",
+        "Admin reviewed the next-run time and saved the schedule",
+        "The pending-timezone notice disappeared",
+        "Admin used Run now to replace the previously missed delivery"
+      ],
+      "important_limit": "Resaving changed future runs only; it did not automatically recreate the missed export.",
+      "source_documents": ["KB-003", "KB-004"]
+    },
+    {
+      "case_id": "CASE-1058",
+      "status": "resolved",
+      "product_version": "4.2",
+      "title": "Viewer could not create an API credential",
+      "symptoms": [
+        "User had the Viewer role",
+        "Developer settings were not visible"
+      ],
+      "resolution": [
+        "Confirmed that Viewers cannot create API credentials",
+        "An Admin created a narrowly scoped workspace credential for the approved integration",
+        "The secret was transferred through the customer's approved secret-management process"
+      ],
+      "important_limit": "Support did not request or receive the credential secret.",
+      "source_documents": ["KB-002", "KB-005"]
+    },
+    {
+      "case_id": "CASE-1072",
+      "status": "resolved",
+      "product_version": "4.2",
+      "title": "Export failed while a connection refresh was still running",
+      "symptoms": [
+        "Run history showed source_refresh_timeout",
+        "Connection refresh completed 19 minutes after the export start time"
+      ],
+      "resolution": [
+        "Confirmed that exports wait up to 15 minutes for required refreshes",
+        "Admin adjusted the refresh schedule to complete before the export",
+        "Analyst used Run now after the next successful refresh"
+      ],
+      "source_documents": ["KB-004", "KB-006"]
+    },
+    {
+      "case_id": "CASE-1089",
+      "status": "resolved",
+      "product_version": "4.2",
+      "title": "Scheduled email export blocked for a new domain",
+      "symptoms": [
+        "Run history showed destination_unverified",
+        "Recipients used a newly added external email domain"
+      ],
+      "resolution": [
+        "Owner resent the destination-verification link",
+        "Owner completed verification within 24 hours",
+        "Analyst used Run now and confirmed delivery acceptance"
+      ],
+      "source_documents": ["KB-004", "KB-007"]
+    },
+    {
+      "case_id": "CASE-1103",
+      "status": "escalated",
+      "product_version": "4.2",
+      "title": "Repeated render failures after documented checks",
+      "symptoms": [
+        "Two consecutive runs showed render_failed",
+        "Dashboard opened successfully",
+        "Connections and destination were active"
+      ],
+      "resolution": [
+        "Collected workspace ID, dashboard ID, schedule ID, run IDs and timestamps",
+        "Escalated to the Rendering team without attaching exported customer data"
+      ],
+      "source_documents": ["KB-004", "KB-008"]
+    },
+    {
+      "case_id": "CASE-0914",
+      "status": "superseded",
+      "product_version": "3.6",
+      "title": "Analyst created a legacy personal API token",
+      "symptoms": [
+        "Analyst needed API access for a personal script"
+      ],
+      "resolution": [
+        "Analyst opened Profile > Personal token",
+        "Analyst created a token linked to their user account"
+      ],
+      "superseded_reason": "Legacy personal tokens were removed in OrbitDesk 4.0. Current workspace credentials must be created by an Owner or Admin.",
+      "source_documents": ["KB-005"]
+    },
+    {
+      "case_id": "CASE-1117",
+      "status": "resolved",
+      "product_version": "4.2",
+      "title": "Connection request lacked enough diagnostic information",
+      "symptoms": [
+        "User reported only that sync was broken",
+        "No connection name, state or error code was provided"
+      ],
+      "resolution": [
+        "Asked for workspace ID, connection ID, state, last successful refresh and latest error code",
+        "Did not request database passwords or OAuth tokens"
+      ],
+      "source_documents": ["KB-006", "KB-008"]
+    },
+    {
+      "case_id": "CASE-1130",
+      "status": "resolved",
+      "product_version": "4.2",
+      "title": "Audit timestamp appeared different from export schedule time",
+      "symptoms": [
+        "Admin compared an audit event displayed in UTC with a schedule displayed in Asia/Kolkata",
+        "The two timestamps appeared to differ by five hours and thirty minutes"
+      ],
+      "resolution": [
+        "Converted both timestamps to UTC",
+        "Confirmed that the audit update and schedule save represented the same moment"
+      ],
+      "source_documents": ["KB-003", "KB-009"]
+    }
+  ]
+}
