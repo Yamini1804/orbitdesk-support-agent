@@ -107,6 +107,7 @@ if __name__ == "__main__":
         result = run_question(compiled, q["question_id"], q["question"])
 
         print(f"[latency] {result['_latency_seconds']}s")
+        print(f"[retry_count] {result.get('retry_count', 0)}")
         print("[node trace]")
         for entry in result["node_trace"]:
             print(f"  -> {entry}")
